@@ -2,15 +2,69 @@
 
 <% content_for :title, "Movies" %>
 
-<h1>Movies</h1>
+<h1 style="text-align: center;">Movies</h1>
 
 <div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
+  <table class="movies-table">
+    <thead>
+      <tr>
+        <th class="<%= 'sorted' if params[:sort] == 'title' %>">
+          <%= sortable "title", "Title" %>
+          <% if params[:sort] == "title" %>
+            <% if params[:direction] == "asc" %>
+              ▲
+            <% else %>
+              ▼
+            <% end %>
+          <% end %>
+        </th>
+        <th class="<%= 'sorted' if params[:sort] == 'rating' %>">
+          <%= sortable "rating", "Rating" %>
+          <% if params[:sort] == "rating" %>
+            <% if params[:direction] == "asc" %>
+              ▲
+            <% else %>
+              ▼
+            <% end %>
+          <% end %>
+        </th>
+        <th class="<%= 'sorted' if params[:sort] == 'release_date' %>">
+          <%= sortable "release_date", "Release Date" %>
+          <% if params[:sort] == "release_date" %>
+            <% if params[:direction] == "asc" %>
+              ▲
+            <% else %>
+              ▼
+            <% end %>
+          <% end %>
+          </th>
+        <th>
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          Total Movies: <%= @movies.count %>
+        </td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td><%= movie.title %></td>
+          <td><%= movie.rating %></td>
+          <td><%= movie.release_date %></td>
+          <td>
+            <%= button_to "Destroy this movie", movie, method: :delete, class: "button-rotten" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+<br>
+<%= button_to "Add a new movie", new_movie_path, method: :get, class: "button-rotten" %>
 
-<%= link_to "New movie", new_movie_path %>
+
