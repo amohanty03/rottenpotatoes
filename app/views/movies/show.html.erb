@@ -1,10 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @movie %>
+<%= render @movie, style: "margin: 0 auto; text-align: center;" %>
 
-<div>
+<div style="margin: 0 auto; text-align: center;">
   <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
   <%= link_to "Back to movies", movies_path %>
-
-  <%= button_to "Destroy this movie", @movie, method: :delete %>
 </div>
+
+<br>
+  <%= button_to "Destroy this movie", @movie, method: :delete, class: "button-rotten" %>
