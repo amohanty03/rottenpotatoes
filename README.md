@@ -1,5 +1,7 @@
 # README
 
+Link to Heroku app: https://rottenpotatoes-ankitm-8c5f7b5329bd.herokuapp.com/
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
